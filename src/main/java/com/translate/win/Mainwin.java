@@ -11,7 +11,7 @@ public class Mainwin {
         FileFactory factory = FileFactory.getInstance();
         if (factory.canTranslate(file)) {
             File trafile = factory.translateFile();
-
+            System.out.println("A");
         }
     }
 }
