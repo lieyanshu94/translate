@@ -11,7 +11,10 @@ public class TranslateContextTxtfile implements TranslateContext {
         trafile = file;
         try {
             BufferedReader br = new BufferedReader(new FileReader(trafile));
-            System.out.println(br.readLine());
+            String read = null;
+            while ((read = br.readLine()) != null) {
+                System.out.println(read);
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return null;

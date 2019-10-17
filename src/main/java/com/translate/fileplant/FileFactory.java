@@ -1,11 +1,15 @@
 package com.translate.fileplant;
 
+import com.translate.translatefile.TranslateContext;
+import com.translate.translatefile.impl.TranslateContextTxtfile;
+
 import java.io.File;
 
 public class FileFactory {
     private final String[] prifix = {"DOX","DOXC","PDF","TXT"};
     private static FileFactory fileFactory = new FileFactory();
     private FileFactory(){};
+    private TranslateContext context;
     public static FileFactory getInstance(){
         return fileFactory;
     }
@@ -18,7 +22,7 @@ public class FileFactory {
             if (s != null) {
                 String postfix = s.toUpperCase();
                 for (int i = 0 ; i<prifix.length+1 ; i++) {
-                    if (i == postfix.length()) {
+                    if (i == postfix.length()+1) {
                         return false;
                     }
                     if(prifix[i].equals(postfix)){
@@ -47,17 +51,19 @@ public class FileFactory {
         System.out.println("Pdf:");
     }
     private void translateTxt(){
+        context = new TranslateContextTxtfile();
+        context.translateFile(translated);
         System.out.println("txt:");
     }
 
     public File translateFile() {
-        if("DOC".equals(prifix)){
+        if("DOC".equals(traprifix)){
             fileFactory.translateDoc();
-        } else if ("DOCX".equals(prifix)) {
+        } else if ("DOCX".equals(traprifix)) {
             fileFactory.translateDocx();
-        } else if ("PDF".equals(prifix)) {
+        } else if ("PDF".equals(traprifix)) {
             fileFactory.translatePdf();
-        } else if ("TXT".equals(prifix)) {
+        } else if ("TXT".equals(traprifix)) {
             fileFactory.translateTxt();
         }
         return translated;
