@@ -13,6 +13,7 @@ public class TranslateContextTxtfile implements TranslateContext {
     public File translateFile(File file) {
         TranslateContext context = new TranslateContextTxtfile();
         trafile = file;
+
         Map<Integer , String> map = new ConcurrentHashMap<Integer, String>();
         try {
             BufferedReader br = new BufferedReader(new FileReader(trafile));
@@ -24,6 +25,7 @@ public class TranslateContextTxtfile implements TranslateContext {
                 if (stringBuilder.toString().getBytes("utf-8").length + read.getBytes("utf-8").length < 200) {
                     stringBuilder.append(read+"\r\n");
                 } else {
+
                     map.put(num,translateSentence(stringBuilder.toString()));
                     num++;
                     stringBuilder.setLength(0);
@@ -50,6 +52,7 @@ public class TranslateContextTxtfile implements TranslateContext {
     }
 
     public String translateSentence(String text) {
+
         return text;
     }
 
